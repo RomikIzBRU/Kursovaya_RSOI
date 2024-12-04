@@ -1,0 +1,75 @@
+﻿@model IEnumerable<OlsaMarketing.Models.Campaign>
+
+@{
+    ViewData["Title"] = "Кампании";
+    Layout = "_Layout";
+}
+
+<link rel="stylesheet" href="~/css/site.css" />
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+<body>
+    <div class="bg">
+        <div class="bg1">
+            <h3>Список кампаний</h3>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <form asp-action="Campaign" method="get" class="search-container" style="flex-grow: 1; margin-right: 10px;">
+                    <input type="text" class="search-input" placeholder="Введите название кампании" name="Name" id="searchQuery" />
+                    <button type="submit" class="search-button">Поиск</button>
+                </form>
+                <a class="btn" asp-action="AddCampaign" style="margin-top: 20px;">Добавить кампанию</a>
+            </div>
+            @if (!Model.Any())
+            {
+                <p>Кампания не найдена.</p>
+            }
+            else
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Название кампании</th>
+                            <th>Дата начала</th>
+                            <th>Дата окончания</th>
+                            <th>Бюджет</th>
+                            <th>Статус</th>
+                            <th>Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var campaign in Model)
+                        {
+                            var daysLeft = (campaign.EndDate - DateTime.Now).Days;
+                            var cellClass = daysLeft > 7
+                            ? "bg-white"
+                            : daysLeft > 4
+                            ? "bg-success text-white"
+                            : daysLeft > 2
+                            ? "bg-warning"
+                            : "bg-danger text-white";
+
+                            <tr>
+                                <td>@campaign.CampaignName</td>
+                                <td>@campaign.StartDate.ToShortDateString()</td>
+                                <td class="@cellClass">@campaign.EndDate.ToShortDateString()</td>
+                                <td>@campaign.Budget.ToString("C")</td>
+                                <td>@campaign.Status</td>
+                                <td>
+                                    <a class="btn-warning" asp-action="EditCampaign" asp-route-id="@campaign.Id">Изменить</a>
+                                    <form asp-action="DeleteCampaign" method="post" style="display:inline;">
+                                        <input type="hidden" name="id" value="@campaign.Id" />
+                                        <button type="submit" class="delete-button">Удалить</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div style="margin-top: 20px;">
+                    <a class="btn" asp-action="Back_Campaign">Показать все кампании</a>
+                </div>
+            }
+            
+        </div>
+    </div>
+</body>

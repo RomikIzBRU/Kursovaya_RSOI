@@ -1,0 +1,74 @@
+﻿@model IEnumerable<OlsaMarketing.Models.Task>
+@{
+    ViewData["Title"] = "Tasks";
+    Layout = "_Layout";
+}
+<link rel="stylesheet" href="~/css/site.css" />
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+<body>
+    <div class="bg">
+        <div class="bg1">
+            <h3>Задачи отдела маркетинга</h3>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+        <form asp-action="Task" method="get" class="search-container" style="flex-grow: 1; margin-right: 10px;">
+            <input type="text" class="search-input" placeholder="Введите ФИО сотрудника" name="Name" id="searchQuery" />
+            <button type="submit" class="search-button">Поиск</button>
+        </form>
+                <a class="btn" asp-action="AddTask" style="margin-top: 20px;">Добавить задачу</a>
+            </div>
+            @if (!Model.Any())
+            {
+                <p>Задача(-и) не найдена(-ы).</p>
+                <a class="btn" asp-action="Back_Task">Назад</a>
+
+            }
+            else
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Описание</th>
+                            <th>Кампания</th>
+                            <th>Сотрудник</th>
+                            <th>Дата завершения</th>
+                            <th>Действие</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var task in Model)
+                        {
+                            var daysLeft = (task.DueTo - DateTime.Now).Days;
+                            var cellClass = daysLeft > 7
+                            ? "bg-white"
+                            : daysLeft > 4
+                            ? "bg-success text-white"
+                            : daysLeft > 2
+                            ? "bg-warning"
+                            : "bg-danger text-white";
+
+                            <tr>
+                                <td>@task.Description</td>
+                                <td>@task.Campaign.CampaignName</td>
+                                <td>@task.Employee.Name</td>
+                                <td class="@cellClass">@task.DueTo.ToShortDateString()</td>
+                                <td class="button-container">
+                                    <form asp-action="EditTask" asp-route-id="@task.Id" method="get" style="display:inline;">
+                                        <button type="submit" class="btn-warning">Изменить</button>
+                                    </form>
+                                    <form asp-action="DeleteTask" asp-route-id="@task.Id" method="post" style="display:inline;">
+                                        <button type="submit" class="delete-button">Удалить</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div style="margin-top: 20px;">
+                    <a class="btn" asp-action="Back_Task">Показать все задачи</a>
+                </div>
+            }
+            
+            </div>
+        </div>
+</body>

@@ -1,0 +1,145 @@
+﻿@model OlsaMarketing.Models.EmployeeView
+
+@{
+    ViewData["Title"] = "Изменить информацию о сотруднике";
+    Layout = "_Layout";
+}
+<link rel="stylesheet" href="~/css/site.css" />
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.6/inputmask.min.css" />
+
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 600px;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 40px;
+        border-radius: 10px;
+        margin: auto;
+        margin-top: 35px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease;
+    }
+
+        .container:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+
+    h2 {
+        text-align: center;
+        color: #2d6cb1;
+        font-weight: 700;
+        margin-bottom: 30px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        font-weight: 500;
+        color: #333;
+        margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 16px;
+        transition: border-color 0.3s ease;
+    }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        select:focus {
+            border-color: #2d6cb1;
+            outline: none;
+        }
+
+    .btn-submit {
+        width: 100%;
+        padding: 14px;
+        border: none;
+        background-color: #2d6cb1;
+        color: white;
+        font-weight: 500;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-submit:hover {
+            background-color: #1f4e81;
+        }
+</style>
+
+<body>
+    <div class="container">
+        <h2>Изменить информацию о сотруднике</h2>
+        <form asp-action="ChangeEmployee" method="post">
+            <input type="hidden" asp-for="Id" /> 
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Имя</label>
+                <input asp-for="Name" class="form-control" placeholder="Введите имя" required />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Postion" class="control-label">Должность</label>
+                <select asp-for="Postion" class="form-control" required>
+                    <option value="">Выберите должность</option>
+                    <option value="Маркетолог">Маркетолог</option>
+                    <option value="Веб-аналитик">Веб-аналитик</option>
+                    <option value="Интернет-маркетолог">Интернет-маркетолог</option>
+                    <option value="Начальник отдела">Начальник отдела</option>
+                    <option value="Менеджер по рекламе">Менеджер по рекламе</option>
+                </select>
+                <span asp-validation-for="Postion" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email" class="control-label">Email</label>
+                <input asp-for="Email" class="form-control" id="Email" placeholder="Введите email" required />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Telephone" class="control-label">Телефон</label>
+                <input asp-for="Telephone" class="form-control" id="Telephone" placeholder="Введите номер телефона" required />
+                <span asp-validation-for="Telephone" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn-submit">Сохранить изменения</button>
+        </form>
+    </div>
+
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.7/jquery.inputmask.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                // Устанавливаем маску для номера телефона
+                $("#Telephone").inputmask({ "mask": "+375 (99) 999-99-99" });
+            });
+        </script>
+    }
+</body>

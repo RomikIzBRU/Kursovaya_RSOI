@@ -1,0 +1,221 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    background-image: url('/css/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    height: 100vh;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f5f7;
+}
+
+.bg {
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bg1 {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    max-width: 1500px;
+    width: 90%;
+    text-align: left;
+    margin-top: 90px;
+}
+
+h3 {
+    font-weight: 700;
+    font-size: 24px;
+    color: #333;
+    margin: 0 0 20px 0;
+}
+
+/* Кнопки */
+.btn {
+    background-color: #2d6cb1;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+    .btn:hover {
+        background-color: #1f4e81;
+        color: white;
+    }
+
+/* Одинаковое оформление delete-button и btn-warning */
+.delete-button,
+.btn-warning {
+    color: white; /* Текст белого цвета */
+    background-color: #333; /* Фон кнопок */
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: normal;
+    padding: 10px 15px; /* Добавлены отступы для кнопок */
+    font-size: 14px;
+    border-radius: 5px; /* Сглаженные края */
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+
+    .delete-button:hover,
+    .btn-warning:hover {
+        background-color: #2d6cb1; /* Более тёмный фон при наведении */
+        color: white; /* Текст остаётся белым */
+        text-decoration: none; /* Убираем подчёркивание */
+    }
+
+
+/* Контейнер для кнопок */
+.button-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Кнопка поиска */
+.search-button {
+    background-color: #2d6cb1;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: normal;
+    transition: background-color 0.3s ease;
+}
+
+    .search-button:hover {
+        background-color: #1f4e81;
+    }
+
+/* Навигация */
+nav {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+    nav img {
+        margin-right: 10px;
+    }
+
+    nav ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+    }
+
+        nav ul li {
+            margin-right: 15px;
+        }
+
+            nav ul li a {
+                display: inline-block;
+                padding: 10px 15px;
+                text-decoration: none;
+                color: black;
+            }
+
+                nav ul li a:hover {
+                    background-color: blue;
+                    color: white;
+                    border-radius: 5px;
+                }
+
+/* Таблица */
+.table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+    .table th,
+    .table td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #5a5c69bc; /* Горизонтальные разделители */
+    }
+
+    .table th {
+        font-weight: 500;
+        color: #2d6cb1;
+        border-bottom: 2px solid #5a5c69bc; /* Дополнительный разделитель для заголовка */
+    }
+
+    .table td {
+        color: #5a5c69;
+    }
+
+/* Контейнер поиска */
+.search-container {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.search-input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 400px;
+    margin-right: 10px;
+}
+
+.search-input {
+    flex: 1;
+    margin-right: 5px;
+}
+
+.search-button {
+    margin-right: 10px;
+    background-color: #2d6cb1;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: normal;
+    transition: background-color 0.3s ease;
+}
+

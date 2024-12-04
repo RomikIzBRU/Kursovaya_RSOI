@@ -1,0 +1,111 @@
+﻿@model OlsaMarketing.Models.ReportView
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@Model.Title</title>
+    <style>
+        
+        body {
+            font-family: 'Noto Emoji', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: none; 
+            color: #000; 
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 20px;
+            margin: 0;
+        }
+
+        .header h4 {
+            font-size: 14px;
+            margin: 5px 0 0;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #000;
+            padding-bottom: 5px;
+        }
+
+        .task-item {
+            margin-bottom: 15px;
+            font-size: 14px;
+            padding: 10px;
+            border: 1px solid #000;
+            width: 100%;
+            box-sizing: border-box; 
+            page-break-inside: avoid; 
+        }
+
+        .photos {
+            margin-top: 10px;
+        }
+
+        .photos h4 {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .photo-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .photo-grid img {
+            width: 100px;
+            height: auto;
+            border: 1px solid #000;
+        }
+    </style></head>
+<body>
+    <div class="header">
+        <h1>Отчет о деятельности маркетингового отдела ОАО "Ольса"</h1>
+        <h4>Создан: @Model.CreatedAt.ToShortDateString()</h4>
+    </div>
+    <div class="section">
+        <div class="tasks">
+            @foreach (var task in Model.Tasks)
+            {
+                <div class="task-item">
+                    <p><strong>Кампания:</strong> @task.Campaign.CampaignName </p>
+                    <p><strong>Сотрудник:</strong> @task.Employee.Name</p>
+                    <p><strong>Описание :</strong> @task.Description</p>
+                    <p><strong>Срок выполнения :</strong> @task.DueTo.ToShortDateString()</p>
+
+                    @if (task.Photos.Any())
+                    {
+                        <div class="photos">
+                            <h4>Фотографии о выполненной работе:</h4>
+                            <div class="photo-grid">
+                                @foreach (var photo in task.Photos)
+                                {
+                                    <img src="~/uploads/@System.IO.Path.GetFileName(photo)" alt="Фото задачи" />
+                                }
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <p>Фотографии отсутствуют.</p>
+                    }
+                    <p><strong>Подпись:                                  ________</strong></p>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>

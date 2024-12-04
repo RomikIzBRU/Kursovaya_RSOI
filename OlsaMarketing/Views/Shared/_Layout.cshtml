@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - OlsaMarketing</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" /> 
+  
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top shadow-sm">
+            <div class="container-fluid">
+                <a href="/" class="navbar-brand">
+                    <img src="/css/olsalogo.png" alt="OlsaMarketing Logo" style="width: 130px; height: auto;">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Сотрудники</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-action="Task">Задачи</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Campaign">Кампании</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Report">Отчеты</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <style>
+    body {
+        padding-top: 200px; /* Adjusting for double height header */
+    }
+
+    .custom-header {
+        height: 110px; /* Twice the normal height */
+        display: flex;
+        align-items: center;
+        background-color: #6A6A6A; /* Darker shade for a modern look */
+        border-bottom: 2px solid #555; /* Subtle border to define the header */
+    }
+
+    .navbar-brand {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #fff;
+    }
+
+    .logo {
+        max-height: 80px; /* Optimized height for the logo */
+    }
+
+    .nav-title {
+        font-size: 1.25rem;
+        color: #fff;
+    }
+
+    .nav-link {
+        font-size: 1.1rem;
+        padding: 8px 16px;
+        color: #ccc;
+        transition: color 0.3s ease, background-color 0.3s ease;
+    }
+
+    .nav-link:hover {
+        color: white;
+        background-color: #6A6A6A;
+        border-radius: 5px; /* Rounded background on hover */
+    }
+
+    .navbar-toggler-icon {
+        background-color: white; /* Ensuring visibility on dark background */
+    }
+
+</style>
+
+
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
