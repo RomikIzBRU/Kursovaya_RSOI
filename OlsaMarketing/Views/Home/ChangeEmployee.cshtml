@@ -137,8 +137,14 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.7/jquery.inputmask.min.js"></script>
         <script>
             $(document).ready(function () {
-                // Устанавливаем маску для номера телефона
                 $("#Telephone").inputmask({ "mask": "+375 (99) 999-99-99" });
+                $("form").submit(function (e) {
+                    var phoneValue = $("#Telephone").val();
+                    if (phoneValue === "" || !$("#Telephone").inputmask("isComplete")) {
+                        e.preventDefault();
+                        alert("Пожалуйста, введите полный номер телефона в формате +375 (XX) XXX-XX-XX.");
+                    }
+                });
             });
         </script>
     }
