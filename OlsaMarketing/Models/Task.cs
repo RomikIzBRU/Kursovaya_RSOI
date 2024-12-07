@@ -19,6 +19,4 @@ namespace OlsaMarketing.Models
         public Campaign Campaign { get; set; }
         public List<string> Photos { get; set; } = new List<string>();
     }
-
-
 }
